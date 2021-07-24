@@ -1,0 +1,44 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+<!--body  {-->
+<!--  background-image: url('{% static 'images/Login_Background.jpg' %}');-->
+<!--  background-size: cover;-->
+<!--  background-position: center center;-->
+<!--  background-attachment: fixed;-->
+<!--}-->
+.register{
+  border: 2px solid black;
+  padding: 60px 40px;
+}
+</style>
+<body>
+<div class="container">
+  <div class="row register">
+  <div class="col-md-4 col-sm-4 col-xs-12"></div>
+  <div class="col-md-4 col-sm-4 col-xs-12">
+    <form method="POST">
+      {%  csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4 text-center text-primary">Join Today</legend>
+        {{form|crispy}}
+      </fieldset>
+      <div class="form-group">
+        <button href="{% url 'register' %}" class="btn btn-outline-info text-primary btn-block" type="submit">
+          Sign Up
+        </button>
+      </div>
+    </form>
+    <div class="border-top pt-3">
+      <small class="text-muted">Already have an account?
+        <a class="ml-2 text-primary" href="{% url 'login' %}">Sign In</a>
+      </small>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-4 col-xs-12"></div>
+  </div>
+</div>
+</body>
+{% endblock content %}
